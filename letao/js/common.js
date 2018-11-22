@@ -1,3 +1,16 @@
+$(document).ajaxStart(function() {
+  // console.log("ajaxStart在开始一个ajax请求时触发");
+  NProgress.start();
+});
+$(document).ajaxStop(function() {
+  // console.log("ajaxStart在开始一个ajax请求时触发");
+  //关闭进度条
+
+  setTimeout(function() {
+    NProgress.done();
+  }, 500);
+});
+
 //判断是否已经登录
 (function() {
   if (location.href.indexOf("login.html") === -1) {
@@ -17,19 +30,6 @@
     });
   }
 })();
-
-$(document).ajaxStart(function() {
-  // console.log("ajaxStart在开始一个ajax请求时触发");
-  NProgress.start();
-});
-$(document).ajaxStop(function() {
-  // console.log("ajaxStart在开始一个ajax请求时触发");
-  //关闭进度条
-
-  setTimeout(function() {
-    NProgress.done();
-  }, 500);
-});
 
 $(".icon_logout").click(function() {
   $("#myModal").modal("show");
