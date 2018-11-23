@@ -49,36 +49,135 @@
         <li class="active">二级分类</li>
       </ol>
 
+      <div class="lt_content">
+
+        <button class="btn btn-default" id="addBtn">添加分类</button>
+
+        <table class="table table-hover table-bordered mt_20">
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>一级分类名称</th>
+              <th>二级分类名称</th>
+              <th>二级分类LOGO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>你这个傻叉</td>
+              <td>狺狺狂吠</td>
+              <td><img style="height:50px" src="./images/none.png"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!--分页-->
+        <div class="text-right">
+          <ul class="paginator"></ul>
+        </div>
+      </div>
+
 
     </div>
   </div>
 
-
-  <!--模态框-->
-  <div class="modal fade" id="myModal">
+  <div class="modal fade" id="secondModal">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-          <h4 class="modal-title">温馨提示</h4>
-        </div>
-        <div class="modal-body">
-          <p class="red"><i class="glyphicon glyphicon-info-sign"></i>您确定要退出后台管理系统吗？</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary" id="logoutBtn">退出</button>
+        <form id="form">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            <h4 class="modal-title">添加分类</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+     <span id="ts">请选择一级分类</span>
+    <span class="caret"></span>
+  </button>
+                <ul class="dropdown-menu">
+
+                </ul>
+              </div>
+              <input type="hidden" name="categoryId">
+
+              <!-- 火热的品牌 默认都火热  1火热  0不热 -->
+              <input type="hidden" name="hot" value="1">
+            </div>
+            <div class="form-group mt_20">
+              <input type="text" class="form-control" name="brandName" placeholder="请输入二级分类">
+            </div>
+
+            <div class="form-group">
+              <label for="fileupload" class="btn btn-default">添加图片</label>
+              <input type="file" id="fileupload" name="pic1" data-url="/category/addSecondCategoryPic" style="display: none;">
+            </div>
+
+            <div class="form-group" id="imgBox">
+              <img src="./images/none.png" style="width: 100px;">
+              <input type="hidden" name="brandLogo">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              <button type="submit" class="btn btn-primary">添加</button>
+            </div>
+        </form>
         </div>
       </div>
     </div>
-  </div>
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script src="lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
-  <script src="lib/nprogress/nprogress.js"></script>
-  <script src="lib/echarts/echarts.min.js"></script>
-  <script src="js/common.js"></script>
+
+
+    <!--模态框-->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            <h4 class="modal-title">温馨提示</h4>
+          </div>
+          <div class="modal-body">
+            <p class="red"><i class="glyphicon glyphicon-info-sign"></i>您确定要退出后台管理系统吗？</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" id="logoutBtn">退出</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="./lib/jquery-fileupload/jquery.ui.widget.js"></script>
+    <script src="./lib/jquery-fileupload/jquery.fileupload.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+    <script src="lib/nprogress/nprogress.js"></script>
+    <script src="./lib/artTemplate/template-web.js"></script>
+    <script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+    <script src="lib/echarts/echarts.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="./js/second.js"></script>
 
 </body>
 
 </html>
+
+<script type="text/html" id="secondTmp">
+  {{each rows v i}}
+
+  <tr>
+    <td>{{i+1+(page-1)*size}}</td>
+    <td>{{v.categoryName}}</td>
+    <td>{{v.brandName}}</td>
+    <td><img style="height:50px" src="{{v.brandLogo}}"></td>
+  </tr>
+
+  {{/each}}
+</script>
+
+<script type="text/html" id="dropdownTmp">
+  {{each rows v i}}
+  <li><a href="#" data-id="{{v.id}}">{{v.categoryName}}</a></li>
+  {{/each}}
+</script>
