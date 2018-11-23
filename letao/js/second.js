@@ -146,6 +146,8 @@ $("#form").on("success.form.bv", function(e) {
         $("#form")
           .data("bootstrapValidator")
           .resetForm(true);
+        $("#ts").text("请选择一级分类");
+        $("#imgBox img").attr("src", "./images/none.png");
       }
     }
   });
