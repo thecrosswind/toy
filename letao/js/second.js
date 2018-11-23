@@ -12,7 +12,7 @@ function render() {
     },
     dataType: "json",
     success: function(info) {
-      // console.log(info);
+      console.log(info);
       var htmlStr = template("secondTmp", info);
       $("tbody").html(htmlStr);
       $(".paginator").bootstrapPaginator({
