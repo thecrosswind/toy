@@ -72,6 +72,7 @@ $("#firstBtn").click(function() {
         // console.log(info);
         if (info.success) {
           $("#firstModal").modal("hide");
+          currentPage = 1;
           render();
           $("#form")
             .data("bootstrapValidator")

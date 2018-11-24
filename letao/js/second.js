@@ -64,6 +64,9 @@ $(".dropdown-menu").on("click", "a", function() {
 
   var ss = $('[name="categoryId"]').val(id);
   // console.log(ss);
+  $("#form")
+    .data("bootstrapValidator")
+    .updateStatus("categoryId", "VALID");
 });
 
 $("#fileupload").fileupload({
@@ -77,6 +80,9 @@ $("#fileupload").fileupload({
     $("#imgBox img").attr("src", src);
 
     $('[name="brandLogo"]').val(src);
+    $("#form")
+      .data("bootstrapValidator")
+      .updateStatus("brandLogo", "VALID");
   }
 });
 
